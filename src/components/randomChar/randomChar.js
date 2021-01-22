@@ -4,6 +4,12 @@ import GotService from '../../services/gotService';
 
 export default class RandomChar extends Component {
 
+    constructor() {
+        super();
+        
+        this.updateChar();
+    }
+
     GotService = new GotService();
     state = {
         name: null,
@@ -11,6 +17,22 @@ export default class RandomChar extends Component {
         born: null,
         died: null,
         culture: null
+    }
+
+    updateChar() {
+        const id = Math.floor(Math.random() * 140 + 25); // 25-140
+        
+        this.GotService.getCharacter(id)
+            .then((char) => {
+                this.setState({
+                    name: char.name,
+                    gender: char.gender,
+                    born: char.born,
+                    died: char.died,
+                    culture: char.culture
+                })
+            })
+            .catch(error => console.log(error));
     }
 
     render() {
