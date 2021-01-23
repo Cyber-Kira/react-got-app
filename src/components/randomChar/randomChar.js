@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './randomChar.css';
 import GotService from '../../services/gotService';
+import Spinner from '../spinner';
 
 export default class RandomChar extends Component {
 
@@ -12,11 +13,15 @@ export default class RandomChar extends Component {
 
     GotService = new GotService();
     state = {
-        char: {}
+        char: {},
+        loading: true
     }
 
     onCharLoaded = (char) => {
-        this.setState({char});
+        this.setState({
+            char,
+            loading: false
+        });
     }
 
     updateChar() {
@@ -28,7 +33,11 @@ export default class RandomChar extends Component {
     }
 
     render() {
-        const {char: {name, gender, born, died, culture} } = this.state;
+        const { char: {name, gender, born, died, culture}, loading } = this.state;
+
+        if (loading) {
+            return <Spinner/>
+        }
 
         return (
             <div className="random-block rounded">
