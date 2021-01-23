@@ -42,11 +42,11 @@ export default class GotService {
 
     _transformCharacter(char) {
         return {
-            name: char.name,
-            gender: char.gender,
-            born: char.born,
-            died: char.died,
-            culture: char.culture
+            name: char.name || 'No data',
+            gender: char.gender || 'No data',
+            born: char.born || 'No data',
+            died: char.died || 'No data',
+            culture: char.culture || 'No data'
         }
     }
 
