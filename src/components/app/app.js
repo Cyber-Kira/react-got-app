@@ -12,6 +12,7 @@ export default class App extends Component {
 
     state = {
         characterToggle: true,
+        selectedChar: 130,
         error: false
     }
 
@@ -19,6 +20,12 @@ export default class App extends Component {
         this.setState({
             characterToggle: !this.state.characterToggle
         });
+    }
+
+    onCharSelected = (id) => {
+        this.setState({
+            selectedChar: id
+        })
     }
 
     render() {
@@ -50,10 +57,10 @@ export default class App extends Component {
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList />
+                            <ItemList onCharSelected={this.onCharSelected} />
                         </Col>
                         <Col md='6'>
-                            <CharDetails />
+                            <CharDetails charId={this.state.selectedChar} />
                         </Col>
                     </Row>
                 </Container>
