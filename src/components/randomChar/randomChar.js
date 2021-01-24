@@ -13,6 +13,7 @@ export default class RandomChar extends Component {
     }
 
     GotService = new GotService();
+    
     state = {
         char: {},
         loading: true
