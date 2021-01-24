@@ -3,7 +3,7 @@ import GotService from '../../services/gotService';
 import './charDetails.css';
 export default class CharDetails extends Component {
 
-    gotService = new GotService;
+    gotService = new GotService();
 
     state = {
         char: null
@@ -15,7 +15,7 @@ export default class CharDetails extends Component {
 
     updateChar() {
         const {charId} = this.props;
-        
+
         if (!charId) {
             return;
         }
