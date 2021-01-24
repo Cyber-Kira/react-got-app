@@ -4,6 +4,7 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
+import ErrorMessage from '../errorMessage/errorMessage';
 import './app.css';
 
 
@@ -21,6 +22,13 @@ export default class App extends Component {
     }
 
     render() {
+        if (this.state.error) {
+            return (
+                <div className='error-block'>
+                    <ErrorMessage/>
+                </div>
+            );
+        }
         const randomChar = this.state.characterToggle ? <RandomChar/> : null;
 
         return (
@@ -34,8 +42,8 @@ export default class App extends Component {
                             <Button 
                                 className='toggle-btn'
                                 onClick={this.onToggle} 
-                                color="primary"
-                                size="lg"
+                                color='primary'
+                                size='lg'
                                 block>Toggle random character</Button>
                             {randomChar}
                         </Col>
