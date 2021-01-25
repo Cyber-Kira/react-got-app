@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import GotService from '../../services/gotService';
-import './charDetails.css';
+import './itemDetails.css';
 
-const Field = ({char, field, label}) => {
+const Field = ({item, field, label}) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>
-            <span>{char[field]}</span>
+            <span>{item[field]}</span>
         </li>
     )
 }
@@ -14,54 +14,55 @@ const Field = ({char, field, label}) => {
 export {
     Field
 };
-export default class CharDetails extends Component {
+
+export default class ItemDetails extends Component {
 
     gotService = new GotService();
 
     state = {
-        char: null
+        item: null
     }
 
     componentDidMount() {
-        this.updateChar();
+        this.updateItem();
     }
 
-    updateChar() {
-        const {charId} = this.props;
+    updateItem() {
+        const {itemId, getData} = this.props;
 
-        if (!charId) {
+        if (!itemId) {
             return;
         }
 
-        this.gotService.getCharacter(charId)
-            .then((char) => {
+        getData(itemId)
+            .then((item) => {
                 this.setState({
-                    char
+                    item
                 })
             })
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.charId !== prevProps.charId) {
-            this.updateChar();
+        if (this.props.itemId !== prevProps.itemId) {
+            this.updateItem();
         }
     }
 
     render() {
 
-        if (!this.state.char) {
+        if (!this.state.item) {
             return <span className='select-error'>Please select a character</span>
         }
-        const {char} = this.state;
-        const {name} = char;
+        const {item} = this.state;
+        const {name} = item;
 
         return (
-            <div className="char-details rounded">
+            <div className="item-details rounded">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
                     {
                         React.Children.map(this.props.children, (child) => {
-                            return React.cloneElement(child, {char});
+                            return React.cloneElement(child, {item});
                         })
                     }
                 </ul>

@@ -5,17 +5,16 @@ import RandomChar from '../randomChar';
 import './app.css';
 import CharacterPage from '../characterPage';
 import ItemList from '../itemList';
-import CharDetails from '../charDetails';
 import GotService from '../../services/gotService';
-
-
+import ItemDetails, { Field } from '../itemDetails';
 export default class App extends Component {
 
     gotService = new GotService();
 
     state = {
         characterToggle: true,
-        error: false
+        error: false,
+        selectedChar: 8 //temp
     }
 
     onToggle = () => {
@@ -53,7 +52,9 @@ export default class App extends Component {
                                 renderItem={(item) => item.name} />
                         </Col>
                         <Col md='6'>
-                            <CharDetails charId={this.state.selectedChar} />
+                            <ItemDetails 
+                                getData={this.gotService.getBook}
+                                itemId={this.state.selectedChar} />
                         </Col>
                     </Row>
                     <Row>
@@ -64,7 +65,14 @@ export default class App extends Component {
                                 renderItem={(item) => item.name} />
                         </Col>
                         <Col md='6'>
-                            <CharDetails charId={this.state.selectedChar} />
+                            <ItemDetails 
+                                getData={this.gotService.getHouse}
+                                itemId={this.state.selectedChar}>
+                                    <Field field='name' label='name' />
+                                    <Field field='region' label='region' />
+                                    <Field field='words' label='words' />
+                                    <Field field='titles' label='titles' />
+                            </ItemDetails>
                         </Col>
                     </Row>
                 </Container>
