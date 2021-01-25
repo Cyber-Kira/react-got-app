@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Spinner from '../spinner';
 import './itemList.css';
 export default class ItemList extends Component {
-    
+
     state = {
         itemList: null
     }
@@ -20,13 +20,15 @@ export default class ItemList extends Component {
 
     renderItems(arr) {
         return arr.map((item, i) => {
-            const {id, name} = item;
+            const {id} = item;
+            const label = this.props.renderItem(item);
+
             return (
                 <li 
                     key={id}
                     onClick={() => this.props.onCharSelected(41 + i)}
                     className="list-group-item">
-                    {name}
+                    {label}
                 </li>
             )
         });
