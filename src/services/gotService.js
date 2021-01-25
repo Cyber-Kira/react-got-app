@@ -44,9 +44,7 @@ export default class GotService {
         return this._transformBook(book);
     }
 
-    isSet = (data) => {
-        return data ? data : 'No data';
-    }
+    isSet = (data) => data ? data : 'No data';
 
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)$/;
@@ -65,6 +63,7 @@ export default class GotService {
     }
     
     _transformHouses = (house) => {
+        console.log(house)
         return {
             id: this._extractId(house),
             name: this.isSet(house.name),
