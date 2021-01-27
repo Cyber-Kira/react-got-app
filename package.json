@@ -17,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/Cyber-Kira/react-got-app/issues"
   },
-  "homepage": "https://github.com/Cyber-Kira/react-got-app#readme"
+  "homepage": "https://Cyber-Kira.github.io/react-got-app",
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  }
 }
