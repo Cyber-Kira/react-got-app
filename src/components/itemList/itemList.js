@@ -1,10 +1,20 @@
 import React, {Component} from 'react';
 import Spinner from '../spinner';
 import './itemList.css';
+import PropTypes from 'prop-types';
 export default class ItemList extends Component {
 
     state = {
         itemList: null
+    }
+
+    static defaultProps = {
+        onItemSelected: () => {}
+    }
+    
+    static propTypes = {
+        onItemSelected: PropTypes.func,
+        getData: PropTypes.func
     }
 
     componentDidMount() {
@@ -50,8 +60,4 @@ export default class ItemList extends Component {
             </ul>
         );
     }
-}
-
-ItemList.defaultProps = {
-    onItemSelected: () => {}
 }
