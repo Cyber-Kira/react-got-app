@@ -1,28 +1,20 @@
 import React, {Component} from 'react';
 import GotService from '../../services/gotService';
-import ItemDetails, { Field } from '../itemDetails';
 import ErrorMessage from '../errorMessage/errorMessage';
 import ItemList from '../itemList';
-import RowBlock from '../rowBlock';
+import {withRouter} from 'react-router-dom';
 
-export default class HousesPage extends Component {
+class HousesPage extends Component {
 
     gotService = new GotService();
 
     state = {
-        selectedHouse: 15,
         error: false
     }
 
     componentDidCatch() {
         this.setState({
             error: true
-        })
-    }
-
-    onItemSelected = (id) => {
-        this.setState({
-            selectedHouse: id
         })
     }
 
@@ -35,28 +27,15 @@ export default class HousesPage extends Component {
             );
         }
 
-        const itemList = (
-            <ItemList 
-                // onItemSelected={this.onItemSelected}
+        return(
+            <ItemList
+                onItemSelected={(itemId) => {
+                    this.props.history.push(itemId);
+                }}
                 getData={this.gotService.getAllHouses}
                 renderItem={({name}) => name} />
         )
-
-        const HouseDetails = (
-            <ItemDetails 
-                getData={this.gotService.getHouse}
-                itemId={this.state.selectedHouse}>
-                    <Field field='name' label='Name' />
-                    <Field field='region' label='Region' />
-                    <Field field='words' label='Words' />
-                    <Field field='titles' label='Titles' />
-                    <Field field='overlord' label='Overlord' />
-                    <Field field='ancestralWeapons' label='Ancestral weapons' />
-            </ItemDetails>
-        )
-
-        return(
-            <RowBlock left={itemList} right={HouseDetails} />
-        )
     }
 };
+
+export default withRouter(HousesPage);
