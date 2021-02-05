@@ -11,7 +11,8 @@ export default class RandomChar extends Component {
     
     state = {
         char: {},
-        loading: true
+        loading: true,
+        error: false
     }
 
     componentDidMount() {
@@ -26,8 +27,7 @@ export default class RandomChar extends Component {
     onCharLoaded = (char) => {
         this.setState({
             char,
-            loading: false,
-            error: false
+            loading: false
         });
     }
 

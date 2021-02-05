@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing <RandomChar/> RandomChar have rendered correctly 1`] = `
+exports[`Testing <RandomChar/> Testing snap & state RandomChar have rendered correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <RandomChar
