@@ -42,5 +42,7 @@
   "bugs": {
     "url": "https://github.com/Cyber-Kira/react-got-app/issues"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest-extended": "^0.11.5"
+  }
 }
